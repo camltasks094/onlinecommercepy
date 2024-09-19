@@ -13,5 +13,5 @@ crispy-bootstrap4==2022.1
 
 # Additional dependencies (you may need to adjust versions based on your environment)
 
-# Pillow for image handling
-Pillow==10.4.0  # o la versión que prefieras
+
+Pillow==10.4.0  
