@@ -104,14 +104,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'onlinecommercedb',
-        'USER': 'ylkgqkgmpk',
-        'PASSWORD': '123Alejandro.',
-        'HOST': 'onlinecommercedb.mysql.database.azure.com',
-        'PORT': '3306',
-        'OPTIONS': {
-            'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'},  # Habilitar conexión SSL
-        },
+        'NAME': 'onlinecommercedb',  # Reemplaza si tienes un nombre de base de datos específico
+        'USER': 'ylkgqkgmpk',  # Este es tu nombre de inicio de sesión del administrador
+        'PASSWORD': '123Alejandro.',  # Coloca aquí la contraseña de MySQL que creaste
+        'HOST': 'onlinecommercedb.mysql.database.azure.com',  # Nombre del servidor MySQL en Azure
+        'PORT': '3306',  # El puerto por defecto de MySQL es 3306
     }
 }
 
