@@ -1,0 +1,14 @@
+# Django framework
+Django==5.1
+
+# MySQL connector for Django
+mysqlclient==2.1.1
+
+# Django Extensions for additional development tools
+django-extensions==3.2.1
+
+# Crispy Forms for better form styling
+django-crispy-forms==2.0
+crispy-bootstrap4==2022.1
+
+# Additional dependencies (you may need to adjust versions based on your environment)
