@@ -106,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'onlinecommercedb',  # Reemplaza si tienes un nombre de base de datos específico
         'USER': 'ylkgqkgmpk',  # Este es tu nombre de inicio de sesión del administrador
-        'PASSWORD': 'cm$XZ1i1Cm9G$S$L',  # Coloca aquí la contraseña de MySQL que creaste
+        'PASSWORD': '123Alejandro.',  # Coloca aquí la contraseña de MySQL que creaste
         'HOST': 'onlinecommercedb.mysql.database.azure.com',  # Nombre del servidor MySQL en Azure
         'PORT': '3306',  # El puerto por defecto de MySQL es 3306
     }
