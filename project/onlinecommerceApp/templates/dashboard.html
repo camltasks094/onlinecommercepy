@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="dashboard">
+        <aside class="menu">
+            <ul>
+                <li><a href="{%url 'listar_producto'%}">Productos</a></li>
+                <li><a href="{%url 'listar_tienda'%}">Tiendas</a></li>
+                <li><a href="{%url 'inicio'%}">inicio</a></li>
+                <li><a href="#">Reportes</a></li>
+
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="header">
+                <h1>Dashboard de Gestión</h1>
+            </header>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <h3 href="">Productos</h3>
+                    <p>$1000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ingresos Mensuales</h3>
+                    <p>$50000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Resumen de Ventas</h3>
+                    <p>$50000</p>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <h3>Inventario</h3>
+                    <p>204 Productos</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Informes y Estadisticas</h3>
+                    <p>$50000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Soporte y Ayuda</h3>
+                    <p>$50000</p>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <h3>Gestion de Pedidos</h3>
+                    <p>$1000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Seguridad y Privacidad</h3>
+                    <p>$50000</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ingresos Mensuales</h3>
+                    <p>$50000</p>
+                </div>
+            </section>
+
+
+
+        </main>
+
+        <!-- Nueva fila a la derecha -->
+        <aside class="right-panel">
+            <section class="news">
+                <h2>Noticias</h2>
+                <ul>
+                    <li>Actualización de producto</li>
+                    <li>Promoción especial</li>
+                </ul>
+            </section>
+
+            <section class="tasks">
+                <h2>Tareas Pendientes</h2>
+                <ul>
+                    <li>Revisar inventario</li>
+                    <li>Enviar informe mensual</li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+{% endblock %}

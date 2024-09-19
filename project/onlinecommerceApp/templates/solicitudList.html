@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Lista de Solicitudes</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Asunto</th>
+                <th>Descripción</th>
+                <th>Tipo de Solicitud</th>
+                <th>Fecha de Creación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+            <tr>
+                <td>{{ solicitud.id }}</td>
+                <td>{{ solicitud.nombre }}</td>
+                <td>{{ solicitud.correo }}</td>
+                <td>{{ solicitud.telefono }}</td>
+                <td>{{ solicitud.asunto }}</td>
+                <td>{{ solicitud.descripcion }}</td>
+                <td>{{ solicitud.id_tipo_solicitud }}</td>
+                <td>{{ solicitud.fecha_creacion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button onclick="history.back()" class="btn btn-secondary">Volver</button>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Sitio{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: white; border-bottom: 2px solid white;">
+  <div class="container-fluid">
+    <span class="navbar-text mx-auto" style="font-size: 18px; font-weight: bold; color: #333; font-family: 'Arial', sans-serif;">
+🌟 ¡Compra local y aprovecha ofertas exclusivas en tu barrio! 🌟 ¡Apoya a tus vecinos y encuentra productos únicos! 🛍️💛
+
+    </span>
+  </div>
+</nav>
+
+
+<!-- Verifica si no estás en la página de inicio -->
+<ul class="nav nav-tabs" style="background-color:">
+  {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+  <li class="nav-item">
+    <a class="nav-link custom-nav-link active"  aria-current="page" href="{% url 'dashboard' %} "><strong>Dashboard</strong></a>
+  </li>
+  {% endif %}
+  <li class="nav-item">
+    <a class="nav-link custom-nav-link active" href="{% url 'listar_producto' %}"><strong>Productos</strong></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link custom-nav-link active" href="{% url 'listar_tienda' %}"><strong>Tiendas</strong></a>
+  </li>
+</ul>
+
+
+
+   <nav class="navbar navbar-expand custom-navbar" style="height: 60px; background-color: white;">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}" style="height: 100%;">
+      <img src="{% static 'img/Logo.png' %}" alt="Logo" style="height: 100%; max-height: 48px;">
+    </a>
+
+    <!-- Navbar para usuarios autenticados -->
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{% url 'logout' %}" style="height: 100%;">
+          <img src="{% static 'img/logout.png' %}" alt="Logout" style="height: 40px;">
+          <span style="margin-left: 8px; font-size: 15px; font-family: Arial, sans-serif; font-weight: bold; color: black;"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{% url 'carrito' %}" style="height: 100%;">
+          <img src="{% static 'img/carritooo.png' %}" alt="Carro" style="height: 45px;">
+          <span style="margin-left: 8px; font-size: 15px; font-family: Arial, sans-serif; font-weight: bold; color: black;"></span>
+        </a>
+      </li>
+    </ul>
+    {% endif %}
+
+    <!-- Navbar para usuarios no autenticados -->
+    {% if not user.is_authenticated %}
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{% url 'register' %}" style="height: 100%; padding: 0 20px;">
+          <img src="{% static 'img/registro.png' %}" alt="Registrarse" style="height: 30px;">
+          <span style="margin-left: 8px; font-size: 15px; font-family: Arial, sans-serif; font-weight: bold; color: black;">Registrarse</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{% url 'login' %}" style="height: 100%; padding: 0 20px;">
+          <img src="{% static 'img/login.png' %}" alt="Login" style="height: 30px;">
+          <span style="margin-left: 8px; font-size: 15px; font-family: Arial, sans-serif; font-weight: bold; color: black;">Iniciar sesión</span>
+        </a>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+
+
+
+
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+<footer class="page padding trim" style="margin-top: 20px;">
+        <div class="type">
+            <p class="text-center">© 2021 Online Commerce. Todos los derechos reservados.</p>
+            <p class="text-center">Calle Principal 123, Ciudad, Estado</p>
+            <p class="text-center">Teléfono: 123-456-7890</p>
+            <p class="text-center">Correo electrónico: info@onlinecommerce.com</p>
+            <a href="{% url 'about'%}" class="text-center" >Acerca de nosotros</a>
+
+        </div>
+ </footer>
+
+</body>
+</html>

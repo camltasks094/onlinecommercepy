@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Eliminar Inventario</h2>
+  <p>¿Estás seguro de que quieres eliminar el siguiente inventario?</p>
+  <p><strong>Tienda:</strong> {{ object.id_tienda }}</p>
+  <p><strong>Producto:</strong> {{ object.id_producto }}</p>
+  <p><strong>Cantidad:</strong> {{ object.cantidad }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar Eliminación</button>
+    <a href="{% url 'listar_inventario' %}">Cancelar</a>
+  </form>
+{% endblock %}

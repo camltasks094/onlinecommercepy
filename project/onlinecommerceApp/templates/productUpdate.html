@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Actualizar Producto{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center">Actualizar Producto</h2>
+        {% if error_message %}
+            <div id="error-message" class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.nombre_producto.label_tag }}
+                        {{ form.nombre_producto|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.descripcion.label_tag }}
+                        {{ form.descripcion|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <p>Cantidad en Inventario</p>
+                        {{ form.cantidad_inventario|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.precio.label_tag }}
+                        {{ form.precio|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.fecha_vencimiento.label_tag }}
+                        {{ form.fecha_vencimiento|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.id_categoria_producto.label_tag }}
+                        {{ form.id_categoria_producto|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.imagen.label_tag }}
+                        {{ form.imagen|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-4">Guardar</button>
+        </form>
+
+        <div class="text-center mt-2">
+            <a href="{% url 'listar_producto' %}">Volver a la lista de productos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

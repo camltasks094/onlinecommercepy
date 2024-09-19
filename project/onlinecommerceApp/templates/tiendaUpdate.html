@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Tienda</title>
+    <!-- Agrega tus enlaces de CSS aquí -->
+</head>
+<body>
+    <h1>Actualizar Tienda</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+
+            <button type="submit" class="btn btn-primary btn-block mt-4">Guardar</button>
+            <a href="{% url 'listar_tienda' %}" class="btn btn-primary btn-block mt-4">Volver a la lista de tiendas</a>
+
+
+    </form>
+
+{% endblock %}
+

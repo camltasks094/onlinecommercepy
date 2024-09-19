@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="mb-4">Acerca de Nosotros</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title">Bienvenido, {{ nombre_usuario|title }}!</h3>
+                    <p class="card-text mt-4">
+                        <strong>OnlineCommerce</strong> es un innovador centro comercial en línea que facilita la conexión entre los tenderos de barrio y sus vecinos.
+                        Nuestra plataforma permite a los usuarios explorar una variedad de productos locales desde la comodidad de sus hogares, promoviendo el comercio local
+                        y fortaleciendo las comunidades. A través de <strong>OnlineCommerce</strong>, los tenderos pueden exhibir sus productos, gestionar inventarios y llegar
+                        a un público más amplio, mientras que los vecinos disfrutan de la conveniencia de comprar en línea y apoyar a sus tiendas de confianza.
+                        ¡Unimos a las comunidades, un clic a la vez!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

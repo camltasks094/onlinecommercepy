@@ -1,0 +1,80 @@
+    <!-- templates/tienda/tienda_detail.html -->
+    {% extends "base.html" %}
+    {% load static %}
+    {% load crispy_forms_tags %}
+
+    {% block content %}
+    <div class="container mt-5">
+        <!-- Tarjeta de detalles de la tienda -->
+        <div class="card1 mb-4">
+
+        <div class="d-flex gap-2 mb-3"> <!-- Contenedor para alinear los botones horizontalmente con espacio entre ellos -->
+
+            {% if user.is_authenticated and user != tienda.id_usuario %}
+            <a href="{% url 'solicitud' tienda_id=tienda.id_tienda %}" class="btn btn-info mb-2" style=" font-family: 'Verdana', sans-serif; background-color: orange; border-color: orange; margin-left:10px; margin-top:10px;">Crear Solicitud</a>
+            {% endif %}
+
+            {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+            <a href="{% url 'listarSolicitudes' tienda_id=tienda.id_tienda %}" class="btn btn-info mb-2" style=" font-family: 'Verdana', sans-serif; background-color: orange; border-color: orange; margin-left:10px; margin-top:10px;">Ver Solicitudes</a>
+            {% endif %}
+
+            {% if user.is_authenticated and user != tienda.id_usuario %}
+            <a href="{% url 'reseña' tienda_id=tienda.id_tienda %}" class="btn btn-info mb-2" style=" font-family: 'Verdana', sans-serif; background-color: orange; border-color: orange; margin-left:10px; margin-top:10px;">Agregar Reseña</a>
+            {% endif %}
+
+        </div>
+
+            <!-- Imagen de la tienda -->
+            <div class="text-center">
+                {% if tienda.imagen %}
+                <img src="{{ tienda.imagen.url }}" alt="{{ tienda.nombre }}" class="img-fluid w-100" style="max-height: 200px; object-fit: contain;">
+                {% else %}
+                <img src="{% static 'img/default_store.png' %}" alt="Imagen no disponible" class="img-fluid w-100" style="max-height: 500px; object-fit: contain;">
+                {% endif %}
+            </div>
+            <div class="card1">
+                <!-- Información de la tienda -->
+                <h1 class="card-title" style="font-family: 'Trebuchet MS', sans-serif; color: black; font-weight: bold;"> {{ tienda.nombre }}</h1>
+                <p class="card-text"><strong>Descripción:</strong> {{ tienda.descripcion }}</p>
+                <p class="card-text"><strong>Teléfono:</strong> {{ tienda.telefono }}</p>
+                <p class="card-text"><strong>Correo:</strong> {{ tienda.correo }}</p>
+                <p class="card-text"><strong>Direccion:</strong> {{ tienda.id_direccion }}</p>
+
+                <p class="card-text"><strong>Instagram:</strong> <a href="{{ tienda.instagram }}" target="_blank">{{ tienda.instagram }}</a></p>
+                <p class="card-text"><strong>Fecha de Creación:</strong> {{ tienda.fecha_creacion }}</p>
+
+                <!-- Botones para acciones -->
+                <div class="mt-4">
+                    <a href="{% url 'listar_inventario' tienda.id_tienda %}" class="btn btn-info" style="font-family: 'Verdana', sans-serif; background-color: #4a90e2; color: white;">Ver Inventario</a>
+
+                    {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+                    <a href="{% url 'crear_producto' %}" class="btn btn-success">Agregar Producto</a>
+                    {% endif %}
+
+                    <a href="{% url 'listar_tienda' %}" class="btn btn-secondary" style="font-family: 'Verdana', sans-serif;">Volver a la lista de tiendas</a>
+                </div>
+            </div>
+        </div>
+
+
+    <h2 style="font-family: 'Trebuchet MS', sans-serif; color: black; font-weight: bold;  padding: 10px 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      Reseñas
+    </h2>
+
+        {% for reseña in tienda.reseñas.all %}
+          <div class="card mb-4">
+            <div class="card-body" style="width:100%">
+              <p class="card-text"><strong>Usuario:</strong> {{ reseña.id_usuario_creacion.username }}</p>
+              <p class="card-text"><strong>Comentario:</strong> {{ reseña.comentario }}</p>
+              <p class="card-text"><strong>Calificación:</strong> {{ reseña.calificacion }}</p>
+            </div>
+          </div>
+        {% empty %}
+          <div class="alert alert-warning" role="alert">
+            No hay reseñas para esta tienda.
+          </div>
+        {% endfor %}
+
+
+    </div>
+    {% endblock %}

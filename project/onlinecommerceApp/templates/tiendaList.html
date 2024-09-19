@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+<h2 style="font-family: 'Verdana', sans-serif; color: black; font-weight: bold;">Lista de Tiendas</h2>
+
+    {% if user|is_in_group:"Tendero" %}
+        <a href="{% url 'crear_tienda' %}" class="btn btn-info mb-2" style=" font-family: 'Verdana', sans-serif; background-color: #fcbf4f; border-color: orange; margin-left:10px; margin-top:10px;">Crear Tienda</a>
+    {% endif %}
+
+    </div>
+
+    <div class="row">
+        {% for tienda in tiendas %}
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                {% if tienda.imagen %}
+                    <img src="{{ tienda.imagen.url }}" alt="{{ tienda.nombre }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="Imagen no disponible" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+
+
+<h5 class="card-title" style="font-family: 'Trebuchet MS', sans-serif; color: black; font-weight: bold; font-size: 36px; text-align: left;">
+  {{ tienda.nombre }}
+</h5>
+                    <p class="card-text"><strong>Teléfono:</strong> {{ tienda.telefono }}</p>
+                    <p class="card-text"><strong>Descripción:</strong> {{ tienda.descripcion }}</p>
+                    <p class="card-text"><strong>Correo:</strong> {{ tienda.correo }}</p>
+                    <p class="card-text"><strong>Instagram:</strong> {{ tienda.instagram }}</p>
+
+
+                    <div class="d-flex flex-wrap align-items-center mt-4">
+                        <!-- Botón para ver detalles de la tienda -->
+                        <a href="{% url 'detalle_tienda' tienda.id_tienda %}" class="btn btn-info" style="font-family: 'Verdana', sans-serif; background-color: #4a90e2; color: white;">Ver Detalles</a>
+
+                        <!-- Botones para editar y eliminar la tienda si el usuario tiene permisos -->
+                        {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+                            <a href="{% url 'editar_tienda' tienda.id_tienda %}" class="btn btn-success " style=" font-family: 'Verdana', sans-serif; margin-left:10px; margin-right:10px">Editar mi tienda</a>
+                            <a href="{% url 'eliminar_tienda' tienda.id_tienda %}" class="btn btn-danger " style=" font-family: 'Verdana', sans-serif; margin-top:4px" >Eliminar mi tienda</a>
+                        {% endif %}
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

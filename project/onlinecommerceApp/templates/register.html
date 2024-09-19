@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center">Registro</h2>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.fecha_nacimiento|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.telefono|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.password1|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.password2|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form.role|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Registrarse</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Contenedor principal -->
+<div class="container-total" style="margin-top:20px">
+
+    <!-- Contenedor izquierdo -->
+    <div class="container-left">
+        <h1 class="title">Tu Carrito</h1>
+
+        <div class="envio">
+            <h2 class="subtitle">Envios</h2>
+            <p class="envio-text">¡Aprovecha nuestra increíble oferta! Por compras superiores a 100 mil pesos, te ofrecemos envío GRATIS. ¡Es la oportunidad perfecta para llenar tu carrito con todo lo que necesitas y recibirlo en la puerta de tu hogar sin costo adicional! No esperes más, ¡haz tu pedido ahora!</p>
+        </div>
+
+        <!-- Información de los productos -->
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Precio Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito_items %}
+                <tr>
+                    <td><img src="{{ item.id_producto.imagen.url }}" alt="{{ item.id_producto.nombre_producto }}"></td>
+                    <td>{{ item.id_producto.descripcion }}</td>
+                    <td>${{ item.id_producto.precio }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_producto' item.id_carrito %}" class="button eliminar">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Fila para el total -->
+                <tr>
+                    <td colspan="2" style="font-size:40px"><strong>Total:</strong></td>
+                    <td style="font-size:30px"><strong>${{ total_precio }}</strong></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="{% static 'script.js' %}"></script>
+    </div>
+
+    <!-- Contenedor derecho -->
+    <div class="container-right">
+        <div class="carrito">
+            <h2 class="subtitle"><strong>Detalles de la Compra</strong></h2>
+            <ul class="purchase-details">
+                {% for item in carrito_items %}
+                <li><strong>{{ item.id_producto.nombre_producto }} </strong>- ${{ item.id_producto.precio }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="subtotal">
+                <h3>Total Productos: {{ carrito_items|length }}</h3>
+                <h3>Total Precio: ${{ total_precio }}</h3>
+            </div>
+
+            <h3>Opciones de Pago</h3>
+
+            <div class="opciones-pago">
+                <div class="opcion"><img src="{% static 'img/visa.png' %}" style="width: 30px;" alt="Visa"></div>
+                <div class="opcion"><img src="{% static 'img/paypal.png' %}" style="width: 30px;" alt="Mastercard"></div>
+                <div class="opcion"><img src="{% static 'img/tarjeta.png' %}" style="width: 30px;" alt="PayPal"></div>
+            </div>
+
+            <button class="button boton-pagar">Ir a Pagar</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

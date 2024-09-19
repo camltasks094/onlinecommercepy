@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Actualizar Inventario</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+  </form>
+  <p><a href="{% url 'inventario_detail' form.instance.pk %}">Cancelar</a></p>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 style="font-family: 'Verdana', sans-serif; color: black; font-weight: bold;">Lista de productos</h2>
+
+    </div>
+
+    <div class="mb-4">
+        <a href="{% url 'listar_producto' %}" class="btn btn-secondary">Todas</a>
+        {% for categoria in categorias %}
+            <a href="{% url 'listar_producto' %}?categoria={{ categoria.id_categoria }}" class="btn btn-secondary">{{ categoria.nombre }}</a>
+        {% endfor %}
+    </div>
+
+
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_producto }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="Imagen no disponible" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">
+                <a href="{% url 'detalle_producto' producto.pk %}" style="font-family: 'Trebuchet MS', sans-serif; color: black; font-weight: bold; font-size: 24px; text-align: left;">{{ producto.nombre_producto }}</a>
+                    </h5>
+                    <p class="card-text "><strong>Precio:</strong> {{ producto.precio | floatformat:2 }} Pesos</p>
+                    <p class="card-text"><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+                     <!-- Contenedor para los botones de acción -->
+                    <div class="d-flex flex-column">
+                            <div class="mb-2">
+                                <a href="{% url 'detalle_producto' producto.pk %}" class="btn btn-info" style="font-family: 'Verdana', sans-serif; background-color: #4a90e2; color: white;">Ver Detalles</a>
+                            </div>
+                            <div class="mb-2">
+                                <form method="post" action="{% url 'agregar_producto' producto.id_producto %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary me-3 mb-2" style=" font-family: 'Verdana', sans-serif; background-color: #fcbf4f; border-color: #fcbf4f;">Agregar al Carrito</button>
+                                </form>
+                            </div>
+                    {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian"%}
+                            <div class="d-flex">
+                                <a href="{% url 'actualizar_producto' producto.pk %}" class="btn btn-success " style=" font-family: 'Verdana'; margin-right:5px;">Editar</a>
+                                <a href="{% url 'borrar_producto' producto.pk %}" class="btn btn-danger" style=" font-family: 'Verdana';">Eliminar</a>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

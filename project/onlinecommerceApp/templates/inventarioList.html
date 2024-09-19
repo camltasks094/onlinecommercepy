@@ -1,0 +1,58 @@
+<!-- templates/inventario/inventario_list.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 style="font-family: 'Verdana', sans-serif; color: black; font-weight: bold; margin-bottom: 30px">Inventario de {{ tienda.nombre }}</h2>
+
+    <!-- Mostrar botón de exportación solo si el usuario tiene permisos -->
+         {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+        <a href="{% url 'exportar_inventario' tienda.id_tienda %}" class="btn btn-warning mb-3">Exportar Inventario</a>
+    {% endif %}
+
+    <div class="row">
+        {% for inventario in inventarios %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- Imagen del producto -->
+                {% if inventario.id_producto.imagen %}
+                    <img src="{{ inventario.id_producto.imagen.url }}" alt="{{ inventario.id_producto.nombre_producto }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="Imagen no disponible" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                {% endif %}
+
+                <!-- Información del producto -->
+                <div class="card-body">
+                    <h5 class="card-title" style="font-family: 'Trebuchet MS', sans-serif; color: black; font-weight: bold;">{{ inventario.id_producto.nombre_producto }}</h5>
+                    <p class="card-text">{{ inventario.id_producto.descripcion }}</p>
+                    <p class="card-text text-muted">{{ inventario.id_producto.precio }} Pesos</p>
+                    <p class="card-text">Cantidad: {{ inventario.cantidad }}</p>
+
+                    <!-- Contenedor para los botones de acción -->
+                    <div class="d-flex flex-column">
+                        <div class="mb-2">
+                            <a href="{% url 'detalle_producto' inventario.id_inventario %}" class="btn btn-primary">Ver Detalles</a>
+                        </div>
+                        <div class="mb-2">
+                            <form method="post" action="{% url 'agregar_producto' inventario.id_inventario %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success" style="background-color: #fcbf4f; border-color: #fcbf4f;">Agregar al Carrito</button>
+                            </form>
+                        </div>
+                            {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
+                            <div class="d-flex">
+                                <a href="{% url 'actualizar_producto' inventario.id_inventario %}" class="btn btn-success" style="margin-right:5px">Editar</a>
+                                <a href="{% url 'borrar_producto' inventario.id_inventario %}" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button onclick="history.back()" class="btn btn-secondary">Volver</button>
+</div>
+{% endblock %}

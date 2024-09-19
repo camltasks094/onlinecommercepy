@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ object.nombre_producto }}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% if object.imagen %}
+                <img src="{{ object.imagen.url }}" alt="{{ object.nombre_producto }}" class="img-fluid" style="width: 100%; height: auto; object-fit: cover;">
+            {% else %}
+                <img src="{% static 'img/default.png' %}" alt="Imagen no disponible" class="img-fluid" style="width: 100%; height: auto; object-fit: cover;">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <p class="lead">{{ object.descripcion }}</p>
+            <p class="text-muted">${{ object.precio | floatformat:2 }}</p>
+        </div>
+    </div>
+    <div class="mb-2">
+      <form method="post" action="{% url 'agregar_producto' producto.id_producto %}" class="d-inline">
+          {% csrf_token %}
+          <button type="submit"  class="btn btn-primary me-3 mb-2" style=" font-family: 'Verdana', sans-serif; background-color: orange; border-color: #fcbf4f; margin-top:8px;">Agregar al Carrito</button>
+      </form>
+
+          <button onclick="history.back()" class="btn btn-secondary">Volver</button>
+
+    </div>
+
+    {% if user.is_authenticated and user == tienda.id_usuario %}
+    <a href="{% url 'borrar_producto' producto.id_producto %} " class="btn btn-primary mt-4">Borrar</a>
+    <a href="{% url 'actualizar_producto' producto.id_producto %}" class="btn btn-primary mt-4">Acualizar</a>
+    {% endif %}
+
+</div>
+{% endblock %}

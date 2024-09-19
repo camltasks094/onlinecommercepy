@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Banner Image -->
+    <img src="{% static 'img/banner3.jpg' %}" class="img-fluid" alt="Banner" style="width: 100%; height: 500px; object-fit: cover;">
+
+    <!-- Welcome Section -->
+    <section class="welcome-container text-center">
+        <h2 id="textBienvenido">Bienvenido a Online Commerce {{ nombre_usuario|title }}</h2>
+        <div class="buttons">
+              <a href="{% url 'listar_producto' %}" class="btn btn-primary" role="button" style="background-color: orange; border: 5px solid orange; border-radius: 4px;">Ver productos</a>
+              <a href="{% url 'listar_tienda' %}" class="btn btn-primary" role="button" style="background-color: orange;  border: 5px solid orange; border-radius: 4px;">Ver tiendas</a>
+
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section class="offers-section">
+        <div class="offers-container">
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/EmprioArmani.jpg' %}" alt="Oferta 1">
+                </div>
+            </div>
+            <!-- Repeat the card div as needed -->
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/Ferrari.jpg' %}" alt="Oferta 2">
+                </div>
+            </div>
+            <!-- Add more cards here if necessary -->
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/lacostee.jpg' %}" alt="Oferta 2">
+                </div>
+            </div>
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/pepsi.jpg' %}" alt="Oferta 2">
+                </div>
+            </div>
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/zara.png' %}" alt="Oferta 2">
+                </div>
+            </div>
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/Hermes_Paris.jpg' %}" alt="Oferta 2">
+                </div>
+            </div>
+            <div class="card1" style="width:400px">
+                <div class="card__image">
+                    <img src="{% static 'img/tiendas/lacoste.png' %}" alt="Oferta 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Ranking Products -->
+    <section class="top-ranking-products" style="width:100%">
+        <h1 class="barra-recomienda text-center">Nuestras Recomendaciones</h1>
+        <div class="top-container">
+            <div class="barra-productos">
+                {% for producto in productos %}
+                <div class="producto">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_producto }}" class="product-img">
+                    <h3 class="product-title">{{ producto.nombre_producto }}</h3>
+                    <p><strong>Descripción: </strong>{{ producto.descripcion }}</p>
+                    <p><strong>Precio: </strong>${{ producto.precio }}</p>
+                    <form method="post" action="{% url 'agregar_producto' producto.id_producto %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button agregar" style="backgraund-color:orange">Agregar al Carrito</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

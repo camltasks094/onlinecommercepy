@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Confirmar Eliminación</h1>
+<p>¿Estás seguro de que quieres eliminar "{{ object.id_producto.nombre_producto }}" del carrito?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a href="{% url 'carrito' %}">Cancelar</a>
+</form>
+{% endblock %}

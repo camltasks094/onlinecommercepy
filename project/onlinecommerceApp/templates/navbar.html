@@ -1,0 +1,45 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand custom-navbar">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <div class="navbar-brand">
+      <img src="{% static 'img/Logo.png' %}" width="60px" height="50px" alt="Logo">
+    </div>
+
+    <!-- Navbar para usuarios autenticados -->
+    {% if user.is_authenticated %}
+      <ul class="navbar-nav d-flex flex-row">
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'listar_producto' %}">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'listar_tienda' %}">Tiendas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'listar_producto' %}">Carrito</a>
+        </li>
+      </ul>
+    {% endif %}
+
+    <!-- Navbar para usuarios no autenticados -->
+    {% if not user.is_authenticated %}
+      <ul class="navbar-nav d-flex flex-row">
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'listar_tienda' %}">Tiendas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'listar_producto' %}">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'register' %}">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-nav-link active" href="{% url 'login' %}">Login</a>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</nav>

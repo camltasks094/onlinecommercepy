@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Agregar Producto{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <h2 class="text-center">Agregar Producto</h2>
+        {% if error_message %}
+            <div id="error-message" class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.nombre_producto|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.descripcion|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.cantidad_inventario|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.precio|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.fecha_vencimiento|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.id_categoria_producto|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.imagen|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-4">Guardar</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'listar_producto' %}">Volver a la lista de productos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

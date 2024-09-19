@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Detalles del Inventario</h2>
+  <p><strong>Tienda:</strong> {{ inventario.id_tienda }}</p>
+  <p><strong>Producto:</strong> {{ inventario.id_producto }}</p>
+  <p><strong>Cantidad:</strong> {{ inventario.cantidad }}</p>
+  <p><strong>Fecha de Creación:</strong> {{ inventario.fecha_creacion }}</p>
+  <p><strong>Fecha de Modificación:</strong> {{ inventario.fecha_modificado }}</p>
+  <p><a href="{% url 'inventario_update' inventario.pk %}">Actualizar</a></p>
+  <p><a href="{% url 'listar_inventario' %}">Volver a la lista</a></p>
+{% endblock %}
