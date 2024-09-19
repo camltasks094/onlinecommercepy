@@ -105,10 +105,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'onlinecommercedb',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'USER': 'ylkgqkgmpk',
+        'PASSWORD': '123Alejandro.',
+        'HOST': 'onlinecommercedb.mysql.database.azure.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'ssl': {'ca': '/etc/ssl/certs/ca-certificates.crt'},  # Habilitar conexión SSL
+        },
     }
 }
 
