@@ -35,7 +35,7 @@
 
 
 <!-- Verifica si no estás en la página de inicio -->
-<ul class="nav nav-tabs" style="background-color:">
+<ul class="nav nav-tabs" >
   {% if user.is_authenticated and user == tienda.id_usuario or user.username == "sebastian" %}
   <li class="nav-item">
     <a class="nav-link custom-nav-link active"  aria-current="page" href="{% url 'dashboard' %} "><strong>Dashboard</strong></a>
