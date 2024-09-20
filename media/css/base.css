@@ -1,0 +1,150 @@
+/* Footer */
+footer.page {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+    border-top: 1px solid #ccc;
+}
+
+footer.page .type {
+    margin-top: 20px;
+}
+
+footer.page .text-center {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.custom-navbar .custom-nav-link {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    footer.page {
+        width: 100%;
+    }
+}
+
+/* General */
+body {
+  background-color: #ffffff;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Banner Image */
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+/* Welcome Section */
+.welcome-container {
+  padding: 20px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.quote-button, .add-store-button {
+  padding: 12px 20px;
+  background-color: #fcbf4f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+/* Offers Section */
+.offers-section {
+  padding: 20px;
+}
+
+.offers-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.card {
+  flex: 0 0 auto;
+  max-width: 100%;
+  background-color: #fffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card1 {
+  flex: 0 0 auto;
+  max-width: 300%;
+  background-color: #fffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card__image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Top Ranking Products */
+.top-ranking-products {
+  padding: 20px;
+}
+
+.barra-recomienda {
+  margin-bottom: 20px;
+}
+
+.top-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.producto {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+  width: 280px;
+}
+
+.producto img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.button.agregar {
+  background-color: orange;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .offers-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+

@@ -1,0 +1,35 @@
+/* Custom Navbar */
+.custom-navbar {
+  background-color: #f8f8f8; /* Puedes cambiar este color a tu preferencia */
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.custom-navbar .navbar-brand img {
+  width: 60px;
+  height: 50px;
+}
+
+.custom-nav-link {
+  color: #fff; /* Color del texto */
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 2px solid transparent; /* Border sólo en la parte inferior */
+}
+
+.custom-nav-link:hover {
+  color: #ccc; /* Color al hacer hover */
+  border-bottom: 2px solid #ccc; /* Border sólo en la parte inferior */
+}
+
+.custom-nav-link.active {
+  color: black;
+  font-weight: bold;
+  font-style: italic; /* Nuevo estilo añadido */
+  border-bottom: 2px solid black; /* Border sólo en la parte inferior */
+}
+
+.custom-nav-link.disabled {
+  color: #ccc; /* Color para los enlaces deshabilitados */
+  border-bottom: 2px solid transparent; /* Border sólo en la parte inferior */
+}
