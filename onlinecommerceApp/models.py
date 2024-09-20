@@ -308,6 +308,10 @@ class Reseña (models.Model):
     def __str__(self):
         return f'Reseña de {self.id_usuario_creacion} para {self.id_tienda}'
 
+    class Meta:
+        managed = True
+        db_table = 'onlinecommerceapp_reseña'
+
 
 
 
