@@ -32,9 +32,15 @@ ALLOWED_HOSTS = [
     '127.0.0.1',  # Para pruebas locales
 ]
 
+
 CORS_ALLOWED_ORIGINS = [
     'https://onlinecommerce-f8c9hpgyh9a8djhg.brazilsouth-01.azurewebsites.net'
 ]
+CORS_ORIGIN_WHITELIST = [
+    'https://onlinecommerce-f8c9hpgyh9a8djhg.brazilsouth-01.azurewebsites.net'
+]
+
+
 
 # Application definition
 
@@ -49,6 +55,7 @@ INSTALLED_APPS = [
     'onlinecommerceApp',
     'crispy_forms',
     'crispy_bootstrap4',
+    'corsheaders',
 
 ]
 
